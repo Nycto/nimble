@@ -1127,8 +1127,12 @@ proc listPaths(options: Options) =
   cli.setSuppressMessages(true)
   assert options.action.typ == actionPath
 
+  # When no specific packages are defined, print out the paths as a colon delimited string
   if options.action.packages.len == 0:
-    raise nimbleError("A package name needs to be specified")
+    # The output for this command is used by tools so we do not use display().
+    for pkg in getPkgInfo(getCurrentDir(), options).getDependenciesPaths(options).foldl(concat(a, b), newSeq[string]()):
+      echo pkg
+    return
 
   var errors = 0
   let pkgs = getInstalledPkgsMin(options.getPkgsDir(), options)

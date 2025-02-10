@@ -215,8 +215,9 @@ Commands:
                [-n, --nimbinaries]  Lists all installed packages.
   tasks                           Lists the tasks specified in the Nimble
                                   package's Nimble file.
-  path         pkgname ...        Shows absolute path to the installed packages
-                                  specified.
+  path         [pkgname, ...]     Shows absolute path to the installed packages
+                                  specified. When no package is specified, the
+                                  list of paths for all dependencies is printed
   dump         [pkgname]          Outputs Nimble package information for
                                   external tools. The argument can be a
                                   .nimble file, a project directory or
